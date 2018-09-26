@@ -4,74 +4,101 @@ import java.applet.Applet;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.TextListener;
 
 public class opdracht_4 extends Applet {
 
     public TextField maandinvoer;
-    Label label;
-    String s, line;
-    int maand;
+    public TextField jaarinvoer;
+    int aantaldagen;
+    int maanden;
+    String s, maanduitvoer;
+    Label writeuitvoer;
+    Label jaar;
 
-    public void init(){
+
+    public void init() {
+        setSize(400, 100);
 
         maandinvoer = new TextField("", 10);
+        writeuitvoer = new Label("Maandnummer:");
+        maandinvoer.addActionListener(new maandinvoerListener());
+        maanduitvoer = "0";
+        add(writeuitvoer);
         add(maandinvoer);
-
-        label = new Label("voer nummer 1-12 in en druk enter");
-        maandinvoer.addActionListener(new maandinvoerListener() );
-        line = "";
-        add(label);
-        add(maandinvoer);
+        jaarinvoer = new TextField("", 10);
+        jaar = new Label("Jaar:");
+        jaarinvoer.addActionListener(new maandinvoerListener());
+        add(jaar);
+        add(jaarinvoer);
     }
 
-    public void paint(Graphics g){
-        g.drawString(line,50,50);
+    public void paint(Graphics g) {
+        g.drawString("Maand : " + maanduitvoer, 50, 70);
+        g.drawString("Dagen : " + aantaldagen, 50, 85);
     }
 
     class maandinvoerListener implements ActionListener {
+
         public void actionPerformed(ActionEvent e) {
             s = maandinvoer.getText();
-            maand = Integer.parseInt( s );
-            switch (maand) {
+            maanden = Integer.parseInt( s );
+            switch (maanden) {
                 case 1:
-                    line = "januari heeft 31 dagen";
+                    maanduitvoer = "Januari";
+                    aantaldagen = 31;
                     break;
                 case 2:
-                    line = "februari heeft 28 dagen";
+                    s = jaarinvoer.getText();
+                    int jaartal = Integer.parseInt(s);
+                    if ((jaartal % 4 == 0 && !(jaartal % 100 == 0)) || jaartal % 400 == 0) {
+                        aantaldagen = 29;
+                    } else {
+                        aantaldagen = 28;
+                    }
+                    maanduitvoer = "Februari";
                     break;
                 case 3:
-                    line = "maart heeft 31 dagen";
+                    maanduitvoer = "Maart";
+                    aantaldagen = 31;
                     break;
                 case 4:
-                    line = "april heeft 30 dagen";
+                    maanduitvoer = "April";
+                    aantaldagen = 30;
                     break;
                 case 5:
-                    line = "mei heeft 31 dagen";
+                    maanduitvoer = "Mei";
+                    aantaldagen = 31;
                     break;
                 case 6:
-                    line = "juni heeft 30 dagen";
+                    maanduitvoer = "Juni";
+                    aantaldagen = 30;
                     break;
                 case 7:
-                    line = "juli heeft 31 dagen";
+                    maanduitvoer = "Juli";
+                    aantaldagen = 31;
                     break;
                 case 8:
-                    line = "augustus heeft 31 dagen";
+                    maanduitvoer = "Augustus";
+                    aantaldagen = 31;
                     break;
                 case 9:
-                    line = "september heeft 30 dagen";
+                    maanduitvoer = "September";
+                    aantaldagen = 30;
                     break;
                 case 10:
-                    line = "oktober heeft 31 dagen";
+                    maanduitvoer = "Oktober";
+                    aantaldagen = 31;
                     break;
                 case 11:
-                    line = "november heeft 30 dagen";
+                    maanduitvoer = "November";
+                    aantaldagen = 30;
                     break;
                 case 12:
-                    line = "december heeft 31 dagen";
+                    maanduitvoer = "December";
+                    aantaldagen = 31;
                     break;
                 default:
-                    line = "typ een nummer van 1 tot 12..!";
+                    maanduitvoer = "Dit is geen geldigen maand..!";
                     break;
             }
             repaint();

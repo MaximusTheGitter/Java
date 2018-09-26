@@ -22,7 +22,6 @@ public class opdracht_1 extends Applet {
         numinput.addActionListener( C );
         check.addActionListener( C );
         add(check);
-
     }
 
     public void paint(Graphics g){
@@ -31,6 +30,7 @@ public class opdracht_1 extends Applet {
         else
             g.drawString("" + result, 50, 50);
     }
+
 
     class checkListener implements ActionListener {
 
@@ -41,4 +41,5 @@ public class opdracht_1 extends Applet {
             repaint();
         }
     }
+
 }
