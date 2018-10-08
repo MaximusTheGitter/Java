@@ -1,18 +1,20 @@
 package H11;
 
 import java.awt.*;
-import java.applet.Applet;
+import java.applet.*;
 
 public class opdracht_2 extends Applet {
 
     public void init() {}
 
     public void paint(Graphics g) {
-        int eind = 5;
+        int teller = 20;
+        int x = 0;
 
-        for(int i = 10; i < eind; i++) {
-            g.drawString("", 20,20);
+        while(teller > 9) {
+            x += 20;
+            g.drawString("" + teller, x,  10 );
+            teller--;
         }
     }
 }
-
